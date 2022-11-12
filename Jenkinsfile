@@ -21,7 +21,7 @@ pipeline {
         
         stage('Cloning Git') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/yadavrohit2709/CICDDevops.git']]])     
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/yadavrohit2709/gitopscode.git']]])     
             }
         }
   
@@ -45,8 +45,10 @@ pipeline {
       }
     
      stage('Trigger ManifestUpdate') {
+      steps{  
                 echo "triggering updatemanifestjob"
                 build job: 'updatemanifest', parameters: [string(name: 'IMAGETAG', value: ${IMAGE_TAG})]
         }
+     }
     }
 }
