@@ -47,7 +47,7 @@ pipeline {
      stage('Trigger ManifestUpdate') {
       steps{  
                 echo "triggering updatemanifestjob"
-                build job: 'updatemanifest', parameters: [string(name: 'IMAGETAG', value: ${IMAGE_TAG})]
+                build job: 'updatemanifest', parameters: [string(name: 'IMAGETAG', value: "${IMAGE_TAG}")]
         }
      }
     }
